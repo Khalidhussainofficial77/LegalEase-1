@@ -1,5 +1,3 @@
-
-
 import streamlit as st
 from agents import agent_orchestrator
 from fpdf import FPDF
@@ -11,16 +9,18 @@ st.markdown("**4 Agents:** Orchestrator → Document Parser → Clause Analyser 
 st.divider()
 
 col1, col2, col3 = st.columns([1, 1, 1])
+
 with col1:
     st.markdown("### 📄 Upload Contract PDF")
     uploaded_file = st.file_uploader("Upload a PDF contract", type=["pdf"])
+
 with col2:
     st.markdown("### 📷 Scan Contract Image")
     scanned_image = st.file_uploader("Upload photo of contract", type=["jpg", "jpeg", "png"])
+
 with col3:
     st.markdown("### ✏️ Or Paste Contract Text")
-    raw_text = st.text_area("Paste contract text here", height=200,
-                            placeholder="Paste any contract clauses here...")
+    raw_text = st.text_area("Paste contract text here", height=200, placeholder="Paste any contract clauses here...")
 
 st.divider()
 run = st.button("🔍 Analyse Contract (4 Agents)", use_container_width=True, type="primary")
@@ -38,11 +38,10 @@ if run:
             status_box.info(f"Running: {msg}")
             progress.progress(min(step[0], 100))
 
-        # Process scanned image if uploaded
-       if scanned_image:
-    from PIL import Image
-    status_box.info("Processing scanned image...")
-    st.info("✅ Image received! For best results paste the contract text directly.")
+        if scanned_image:
+            from PIL import Image
+            status_box.info("Processing scanned image...")
+            st.info("Image received! For best results paste the contract text directly.")
 
         with st.spinner("Running 4-agent pipeline..."):
             analysed, rewrites = agent_orchestrator(
@@ -57,9 +56,9 @@ if run:
         if not analysed:
             st.error("Could not extract clauses. Please check your input.")
         else:
-            high   = sum(1 for c in analysed if c.get("risk") == "HIGH")
+            high = sum(1 for c in analysed if c.get("risk") == "HIGH")
             medium = sum(1 for c in analysed if c.get("risk") == "MEDIUM")
-            low    = sum(1 for c in analysed if c.get("risk") == "LOW")
+            low = sum(1 for c in analysed if c.get("risk") == "LOW")
 
             m1, m2, m3, m4 = st.columns(4)
             m1.metric("Total Clauses", len(analysed))
@@ -69,6 +68,7 @@ if run:
 
             st.divider()
             st.markdown("### 📋 Clause Analysis — Agent 3 Output")
+
             for clause in analysed:
                 risk = clause.get("risk", "LOW")
                 icon = {"HIGH": "🔴", "MEDIUM": "🟡", "LOW": "🟢"}.get(risk, "🟢")
@@ -81,6 +81,7 @@ if run:
             if rewrites:
                 st.divider()
                 st.markdown("### ✏️ Safe Contract Draft — Agent 4 Output")
+
                 for r in rewrites:
                     icon = "🔴" if r.get("risk") == "HIGH" else "🟡"
                     with st.expander(f"{icon} Clause {r['clause_number']} — Rewritten ({r['risk']} risk fixed)"):
@@ -94,15 +95,17 @@ if run:
 
                 st.divider()
                 st.markdown("### 📄 Download Safe Contract")
+
                 pdf = FPDF()
                 pdf.set_margins(10, 10, 10)
                 pdf.add_page()
                 pdf.set_auto_page_break(auto=True, margin=10)
-                pdf.set_font("Helvetica", "B", 18)
+                pdf.set_font("Helvetica", "B", 16)
                 pdf.cell(180, 12, "LegalEase - Safe Contract Draft", ln=True, align="C")
                 pdf.set_font("Helvetica", "I", 10)
                 pdf.cell(180, 8, "AI-powered contract analysis for Pakistan", ln=True, align="C")
                 pdf.ln(5)
+
                 for r in rewrites:
                     pdf.set_fill_color(240, 240, 240)
                     pdf.set_font("Helvetica", "B", 11)
@@ -114,11 +117,12 @@ if run:
                     pdf.multi_cell(180, 6, reason.encode('latin-1', 'replace').decode('latin-1'))
                     pdf.ln(2)
                     pdf.set_font("Helvetica", "B", 9)
-                    pdf.multi_cell(180, 6, "Safe Version:")
+                    pdf.multi_cell(180, 6, "Safe Version:".encode('latin-1', 'replace').decode('latin-1'))
                     pdf.set_font("Helvetica", size=10)
                     safe_text = r["safe_version"].encode('latin-1', 'replace').decode('latin-1')
                     pdf.multi_cell(180, 7, safe_text)
                     pdf.ln(5)
+
                 pdf_bytes = pdf.output()
                 st.download_button(
                     "📄 Download Safe Contract PDF",
