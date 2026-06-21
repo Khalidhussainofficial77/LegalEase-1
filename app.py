@@ -39,16 +39,10 @@ if run:
             progress.progress(min(step[0], 100))
 
         # Process scanned image if uploaded
-        if scanned_image:
-            import pytesseract
-            from PIL import Image
-            pytesseract.pytesseract.tesseract_cmd = r'C:\Program Files\Tesseract-OCR\tesseract.exe'
-            status_box.info("Scanning image and extracting text...")
-            image = Image.open(scanned_image)
-            extracted_text = pytesseract.image_to_string(image)
-            st.info(f"✅ Scanned text extracted: {len(extracted_text)} characters")
-            if not raw_text.strip():
-                raw_text = extracted_text
+       if scanned_image:
+    from PIL import Image
+    status_box.info("Processing scanned image...")
+    st.info("✅ Image received! For best results paste the contract text directly.")
 
         with st.spinner("Running 4-agent pipeline..."):
             analysed, rewrites = agent_orchestrator(
