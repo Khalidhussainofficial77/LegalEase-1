@@ -69,7 +69,16 @@ Return ONLY the rewritten clause text, nothing else.
 
 ## 📸 Screenshots
 
-*(Screenshots coming soon)*
+## 📸 Screenshots
+
+### Home Screen — Upload or Paste Contract
+![Home Screen](screenshot1.png)
+
+### Clause Analysis — Agent 3 Output
+![Risk Analysis](screenshot2.png)
+
+### Safe Contract Draft — Agent 4 Output
+![Safe Draft](screenshot3.png)
 ---
 
 ## 🚀 How to Run
