@@ -69,8 +69,6 @@ Return ONLY the rewritten clause text, nothing else.
 
 ## 📸 Screenshots
 
-## 📸 Screenshots
-
 ### Home Screen — Upload or Paste Contract
 ![Home Screen](screenshot1.png)
 
