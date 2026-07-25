@@ -156,7 +156,6 @@ if run:
                 mime="application/pdf",
                 use_container_width=True
             )
-
         else:
             st.success("✅ No risky clauses found — your contract looks safe!")
 
