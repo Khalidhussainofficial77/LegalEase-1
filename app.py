@@ -96,68 +96,68 @@ if run:
                 st.divider()
                 st.markdown("### 📄 Download Safe Contract")
 
-            pdf = FPDF()
-            pdf.set_margins(15, 15, 15)
-            pdf.add_page()
-            pdf.set_auto_page_break(auto=True, margin=15)
+                pdf = FPDF()
+                pdf.set_margins(15, 15, 15)
+                pdf.add_page()
+                pdf.set_auto_page_break(auto=True, margin=15)
 
-            # Title
-            pdf.set_font("Helvetica", "B", 16)
-            pdf.cell(0, 12, "LegalEase - Safe Contract Draft", ln=True, align="C")
-            pdf.set_font("Helvetica", "I", 10)
-            pdf.cell(0, 8, "AI-powered contract analysis for Pakistan", ln=True, align="C")
-            pdf.ln(8)
+                # Title
+                pdf.set_font("Helvetica", "B", 16)
+                pdf.cell(0, 12, "LegalEase - Safe Contract Draft", ln=True, align="C")
+                pdf.set_font("Helvetica", "I", 10)
+                pdf.cell(0, 8, "AI-powered contract analysis for Pakistan", ln=True, align="C")
+                pdf.ln(8)
 
-            for r in rewrites:
-                # Clause header
-                pdf.set_fill_color(220, 220, 220)
-                pdf.set_font("Helvetica", "B", 11)
-                title = f"Clause {r['clause_number']} | {r['risk']} RISK - Fixed"
-                pdf.multi_cell(0, 9, title, fill=True)
-                pdf.ln(2)
+                for r in rewrites:
+                    # Clause header
+                    pdf.set_fill_color(220, 220, 220)
+                    pdf.set_font("Helvetica", "B", 11)
+                    title = f"Clause {r['clause_number']} | {r['risk']} RISK - Fixed"
+                    pdf.multi_cell(0, 9, title, fill=True)
+                    pdf.ln(2)
 
-                # Risk reason
-                pdf.set_font("Helvetica", "I", 9)
-                reason = r.get('reason', '')
-                # Clean non-latin characters
-                reason_clean = reason.encode('latin-1', 'replace').decode('latin-1')
-                pdf.multi_cell(0, 6, f"Risk: {reason_clean}")
-                pdf.ln(2)
+                    # Risk reason
+                    pdf.set_font("Helvetica", "I", 9)
+                    reason = r.get('reason', '')
+                    # Clean non-latin characters
+                    reason_clean = reason.encode('latin-1', 'replace').decode('latin-1')
+                    pdf.multi_cell(0, 6, f"Risk: {reason_clean}")
+                    pdf.ln(2)
 
-                # Original clause
-                pdf.set_font("Helvetica", "B", 9)
-                pdf.multi_cell(0, 6, "Original Clause:")
-                pdf.set_font("Helvetica", size=9)
-                original_clean = r.get('original', '').encode('latin-1', 'replace').decode('latin-1')
-                pdf.multi_cell(0, 6, original_clean)
-                pdf.ln(2)
+                    # Original clause
+                    pdf.set_font("Helvetica", "B", 9)
+                    pdf.multi_cell(0, 6, "Original Clause:")
+                    pdf.set_font("Helvetica", size=9)
+                    original_clean = r.get('original', '').encode('latin-1', 'replace').decode('latin-1')
+                    pdf.multi_cell(0, 6, original_clean)
+                    pdf.ln(2)
 
-                # Safe version
-                pdf.set_font("Helvetica", "B", 10)
-                pdf.set_text_color(0, 100, 0)
-                pdf.multi_cell(0, 6, "Safe Version:")
-                pdf.set_font("Helvetica", size=10)
-                pdf.set_text_color(0, 0, 0)
-                safe_text = r.get('safe_version', '')
-                safe_clean = safe_text.encode('latin-1', 'replace').decode('latin-1')
-                pdf.multi_cell(0, 7, safe_clean)
-                pdf.ln(6)
+                    # Safe version
+                    pdf.set_font("Helvetica", "B", 10)
+                    pdf.set_text_color(0, 100, 0)
+                    pdf.multi_cell(0, 6, "Safe Version:")
+                    pdf.set_font("Helvetica", size=10)
+                    pdf.set_text_color(0, 0, 0)
+                    safe_text = r.get('safe_version', '')
+                    safe_clean = safe_text.encode('latin-1', 'replace').decode('latin-1')
+                    pdf.multi_cell(0, 7, safe_clean)
+                    pdf.ln(6)
 
-                # Divider line
-                pdf.set_draw_color(200, 200, 200)
-                pdf.line(15, pdf.get_y(), 195, pdf.get_y())
-                pdf.ln(4)
+                    # Divider line
+                    pdf.set_draw_color(200, 200, 200)
+                    pdf.line(15, pdf.get_y(), 195, pdf.get_y())
+                    pdf.ln(4)
 
-            pdf_bytes = pdf.output()
-            st.download_button(
-                "📄 Download Safe Contract PDF",
-                data=bytes(pdf_bytes),
-                file_name="legalease_safe_contract.pdf",
-                mime="application/pdf",
-                use_container_width=True
-            )
-        else:
-            st.success("✅ No risky clauses found — your contract looks safe!")
+                pdf_bytes = pdf.output()
+                st.download_button(
+                    "📄 Download Safe Contract PDF",
+                    data=bytes(pdf_bytes),
+                    file_name="legalease_safe_contract.pdf",
+                    mime="application/pdf",
+                    use_container_width=True
+                )
+            else:
+               st.success("✅ No risky clauses found — your contract looks safe!")
 
 st.divider()
 st.caption("⚖️ LegalEase Agent — AI-powered contract analysis for Pakistan — Powered by Groq AI")
