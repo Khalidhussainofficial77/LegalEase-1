@@ -96,19 +96,19 @@ if run:
                 st.divider()
                 st.markdown("### 📄 Download Safe Contract")
 
-             pdf = FPDF()
-             pdf.set_margins(15, 15, 15)
-             pdf.add_page()
-             pdf.set_auto_page_break(auto=True, margin=15)
+            pdf = FPDF()
+            pdf.set_margins(15, 15, 15)
+            pdf.add_page()
+            pdf.set_auto_page_break(auto=True, margin=15)
 
-             # Title
-             pdf.set_font("Helvetica", "B", 16)
-             pdf.cell(0, 12, "LegalEase - Safe Contract Draft", ln=True, align="C")
-             pdf.set_font("Helvetica", "I", 10)
-             pdf.cell(0, 8, "AI-powered contract analysis for Pakistan", ln=True, align="C")
-             pdf.ln(8)
+            # Title
+            pdf.set_font("Helvetica", "B", 16)
+            pdf.cell(0, 12, "LegalEase - Safe Contract Draft", ln=True, align="C")
+            pdf.set_font("Helvetica", "I", 10)
+            pdf.cell(0, 8, "AI-powered contract analysis for Pakistan", ln=True, align="C")
+            pdf.ln(8)
 
-             for r in rewrites:
+            for r in rewrites:
                 # Clause header
                 pdf.set_fill_color(220, 220, 220)
                 pdf.set_font("Helvetica", "B", 11)
