@@ -69,15 +69,14 @@ Return ONLY the rewritten clause text, nothing else.
 
 ## 📸 Screenshots
 
-### Home Screen — Upload or Paste Contract
-![Home Screen](https://raw.githubusercontent.com/Khalidhussainofficial77/LegalEase-1/main/screenshot1.png.png)
+![Home Screen](https://raw.githubusercontent.com/Khalidhussainofficial77/LegalEase-1/main/home.png)
 
-### Clause Analysis — Agent 3 Output
-![Risk Analysis](https://raw.githubusercontent.com/Khalidhussainofficial77/LegalEase-1/main/screenshot2.png.png)
+![Risk Analysis](https://raw.githubusercontent.com/Khalidhussainofficial77/LegalEase-1/main/analysis.png)
 
-### Safe Contract Draft — Agent 4 Output
-![Safe Draft](https://raw.githubusercontent.com/Khalidhussainofficial77/LegalEase-1/main/screenshot3.png.png)
+![Safe Draft](https://raw.githubusercontent.com/Khalidhussainofficial77/LegalEase-1/main/draft.png)
+
 ---
+
 ## 🚀 How to Run
 
 1. Clone the repo:
