@@ -157,8 +157,8 @@ if run:
                 use_container_width=True
             )
 
-            else:
-                st.success("✅ No risky clauses found — your contract looks safe!")
+        else:
+            st.success("✅ No risky clauses found — your contract looks safe!")
 
 st.divider()
 st.caption("⚖️ LegalEase Agent — AI-powered contract analysis for Pakistan — Powered by Groq AI")
