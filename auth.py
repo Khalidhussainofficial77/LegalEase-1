@@ -20,7 +20,7 @@ def sign_up(email, password):
                 "plan": "free",
                 "analyses_used": 0
             }).execute()
-            return True, "Account created! Please check your email to verify."
+            return True, "Account created successfully! You can now login."
         return False, "Signup failed. Try again."
     except Exception as e:
         return False, str(e)
