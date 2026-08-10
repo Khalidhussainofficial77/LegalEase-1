@@ -380,8 +380,15 @@ elif page == "upgrade" and user:
 
         if st.button("Submit Upgrade Request", use_container_width=True, type="primary"):
             if full_name and phone:
+                from auth import supabase
+                supabase.table("upgrade_requests").insert({
+                    "user_id": str(user.id),
+                    "full_name": full_name,
+                    "phone": phone,
+                    "payment_method": payment_method
+                }).execute()
                 st.success(f"✅ Request received! We'll contact you at {phone} within 24 hours to complete your upgrade to Pro.")
-                st.info("📧 Email: khalidhussainabbasi77@gmail.com | 📱 WhatsApp: 03353100266")
+                st.info("📧 You can also email us at khalidhussainabbasi77@gmail.com")
             else:
                 st.error("Please fill in all fields.")
 
