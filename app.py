@@ -376,11 +376,12 @@ elif page == "upgrade" and user:
             ⚠️ Online payment coming soon! After submitting we will contact you within 24 hours to complete payment manually.
         </div>
         """, unsafe_allow_html=True)
+        st.markdown("[📱 Upgrade via WhatsApp](https://wa.me/923353100266?text=I%20want%20to%20upgrade%20my%20LegalEase%20plan)")
 
         if st.button("Submit Upgrade Request", use_container_width=True, type="primary"):
             if full_name and phone:
                 st.success(f"✅ Request received! We'll contact you at {phone} within 24 hours to complete your upgrade to Pro.")
-                st.info("📧 You can also email us at khalidhussainabbasi77@gmail.com")
+                st.info("📧 Email: khalidhussainabbasi77@gmail.com | 📱 WhatsApp: 03353100266")
             else:
                 st.error("Please fill in all fields.")
 
