@@ -702,20 +702,20 @@ else:
         </div>
     </div>
     """, unsafe_allow_html=True)
-    col_l, col_m, col_r = st.columns([1,2,1])
-with col_m:
-    if user:
-        if st.button("⭐ Upgrade to Pro — Rs. 999/month", 
-                     use_container_width=True, 
-                     type="primary"):
-            st.session_state.current_page = "upgrade"
-            st.rerun()
-    else:
-        if st.button("⭐ Get started — Sign up free", 
-                     use_container_width=True, 
-                     type="primary"):
-            st.markdown("<script>window.scrollTo(0,0)</script>", 
-                       unsafe_allow_html=True)
+            col_l, col_m, col_r = st.columns([1,2,1])
+        with col_m:
+            if user:
+                if st.button("⭐ Upgrade to Pro — Rs. 999/month", 
+                             use_container_width=True, 
+                             type="primary"):
+                    st.session_state.current_page = "upgrade"
+                    st.rerun()
+            else:
+                if st.button("⭐ Get started — Sign up free", 
+                             use_container_width=True, 
+                             type="primary"):
+                    st.markdown("<script>window.scrollTo(0,0)</script>", 
+                               unsafe_allow_html=True)
 
     # FOOTER
     st.markdown("""
