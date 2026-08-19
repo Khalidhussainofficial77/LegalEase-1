@@ -685,23 +685,37 @@ else:
                 <div class="pricing-feat white">✓ Contract history</div>
                 <div class="pricing-feat white">✓ Priority support</div>
                 <div class="pricing-feat white">✓ All contract types</div>
-                <button class="pricing-btn feat">Upgrade to Pro</button>
+                <button class="pricing-btn feat" onclick="window.location.href='?page=upgrade'">Upgrade to Pro</button>
             </div>
             <div class="pricing-card">
-                <div class="pricing-badge">For companies</div>
+                <div class="pricing-badge" style="background:#f3f4f6;color:#6b7280;">Coming Soon</div>
                 <div class="pricing-name">Business</div>
-                <div class="pricing-price">Rs. 4,999</div>
+                <div class="pricing-price" style="color:#9ca3af;">Rs. 4,999</div>
                 <div class="pricing-mo">per month</div>
                 <hr class="pricing-divider">
                 <div class="pricing-feat">✓ Unlimited analyses</div>
                 <div class="pricing-feat">✓ 10 team members</div>
                 <div class="pricing-feat">✓ API access</div>
                 <div class="pricing-feat">✓ Dedicated support</div>
-                <button class="pricing-btn">Contact us</button>
+                <button class="pricing-btn" style="opacity:0.5;cursor:not-allowed;" disabled>Coming Soon</button>
             </div>
         </div>
     </div>
     """, unsafe_allow_html=True)
+    col_l, col_m, col_r = st.columns([1,2,1])
+with col_m:
+    if user:
+        if st.button("⭐ Upgrade to Pro — Rs. 999/month", 
+                     use_container_width=True, 
+                     type="primary"):
+            st.session_state.current_page = "upgrade"
+            st.rerun()
+    else:
+        if st.button("⭐ Get started — Sign up free", 
+                     use_container_width=True, 
+                     type="primary"):
+            st.markdown("<script>window.scrollTo(0,0)</script>", 
+                       unsafe_allow_html=True)
 
     # FOOTER
     st.markdown("""
