@@ -41,7 +41,7 @@ def agent_clause_analyser(clauses):
             )
             raw = response.choices[0].message.content.strip()
             raw = raw.replace("```json", "").replace("```", "").strip()
-            match = re.search(r'\{.*?\}', raw, re.DOTALL)
+            match = re.search(r'\{.*\}', raw, re.DOTALL)
             if match:
                 raw = match.group()
             data = json.loads(raw)
