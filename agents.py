@@ -31,7 +31,7 @@ def agent_clause_analyser(clauses):
         prompt = f"You are a legal assistant for Pakistani law. Analyze this contract clause and respond ONLY with a JSON object with these exact fields: clause_number, risk (HIGH/MEDIUM/LOW), reason, urdu_summary. Clause: {clause}"
         try:
             response = client.chat.completions.create(
-                model="llama-3.3-70b-versatile",
+                model="openai/gpt-oss-120b",
                 messages=[
                     {"role": "system", "content": "You are a legal assistant. Respond with valid JSON only. No markdown."},
                     {"role": "user", "content": prompt}
@@ -52,8 +52,7 @@ def agent_clause_analyser(clauses):
             results.append(data)
             print(f"   Clause {i+1}: {data.get('risk')} risk")
         except Exception as e:
-            import streamlit as st
-            st.error(f"Error clause {i+1}: {e}")
+            print(f"   Error clause {i+1}: {e}")
             results.append({
                 "clause_number": i+1,
                 "original": clause,
@@ -71,7 +70,7 @@ def agent_draft_generator(analysed_clauses):
         prompt = f"Rewrite this risky clause into a safer version for Pakistani law. Return ONLY the rewritten clause text. Original: {clause['original']}"
         try:
             response = client.chat.completions.create(
-                model="llama-3.3-70b-versatile",
+                model="openai/gpt-oss-120b",
                 messages=[
                     {"role": "system", "content": "Return only the rewritten clause text, nothing else."},
                     {"role": "user", "content": prompt}
