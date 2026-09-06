@@ -52,7 +52,8 @@ def agent_clause_analyser(clauses):
             results.append(data)
             print(f"   Clause {i+1}: {data.get('risk')} risk")
         except Exception as e:
-            print(f"   Error clause {i+1}: {e}")
+            import streamlit as st
+            st.error(f"Error clause {i+1}: {e}")
             results.append({
                 "clause_number": i+1,
                 "original": clause,
