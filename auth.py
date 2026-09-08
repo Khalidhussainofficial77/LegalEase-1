@@ -52,7 +52,13 @@ def sign_out():
 
 def restore_session():
     if st.session_state.get("access_token") and st.session_state.get("refresh_token"):
-        supabase.auth.set_session(st.session_state.access_token, st.session_state.refresh_token)    
+        try:
+            supabase.auth.set_session(st.session_state.access_token, st.session_state.refresh_token)
+        except Exception:
+            st.session_state.access_token = None
+            st.session_state.refresh_token = None
+            st.session_state.user = None
+            st.session_state.email = None    
 
 def get_analyses_remaining():
     plan = st.session_state.get("plan", "free")
