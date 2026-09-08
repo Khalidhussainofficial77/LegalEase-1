@@ -7,6 +7,9 @@ import os
 from dotenv import load_dotenv
 load_dotenv()
 
+from auth import restore_session
+restore_session()
+
 SUPABASE_URL = os.getenv("SUPABASE_URL") or st.secrets.get("SUPABASE_URL", "")
 SUPABASE_KEY = os.getenv("SUPABASE_KEY") or st.secrets.get("SUPABASE_KEY", "")
 supabase = create_client(SUPABASE_URL, SUPABASE_KEY)
