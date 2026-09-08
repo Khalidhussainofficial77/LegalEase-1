@@ -31,6 +31,8 @@ def sign_in(email, password):
         if res.user:
             st.session_state.user = res.user
             st.session_state.email = res.user.email
+            st.session_state.access_token = res.session.access_token
+            st.session_state.refresh_token = res.session.refresh_token
             profile = supabase.table("profiles").select("*").eq("id", str(res.user.id)).execute()
             if profile.data:
                 st.session_state.plan = profile.data[0]["plan"]
@@ -46,6 +48,10 @@ def sign_out():
     st.session_state.email = None
     st.session_state.plan = "free"
     st.session_state.analyses_used = 0
+
+def restore_session():
+    if st.session_state.get("access_token") and st.session_state.get("refresh_token"):
+        supabase.auth.set_session(st.session_state.access_token, st.session_state.refresh_token)    
 
 def get_analyses_remaining():
     plan = st.session_state.get("plan", "free")
