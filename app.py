@@ -429,11 +429,15 @@ else:
             </div>
             """, unsafe_allow_html=True)
             mode = st.radio("", ["Login", "Sign up"], horizontal=True, label_visibility="collapsed")
-            email = st.text_input("Email address", placeholder="you@example.com")
-            password = st.text_input("Password", type="password", placeholder="••••••••")
-            if mode == "Login":
-                if st.button("Login to LegalEase", use_container_width=True, type="primary"):
-                    if email and password:
+            with st.form(key="auth_form"):
+                email = st.text_input("Email address", placeholder="you@example.com")
+                password = st.text_input("Password", type="password", placeholder="••••••••")
+                submit_label = "Login to LegalEase" if mode == "Login" else "Create free account"
+                submitted = st.form_submit_button(submit_label, use_container_width=True, type="primary")
+
+            if submitted:
+                if email and password:
+                    if mode == "Login":
                         success, msg = sign_in(email, password)
                         if success:
                             st.success(msg)
@@ -441,10 +445,6 @@ else:
                         else:
                             st.error(msg)
                     else:
-                        st.error("Please enter email and password.")
-            else:
-                if st.button("Create free account", use_container_width=True, type="primary"):
-                    if email and password:
                         if len(password) < 6:
                             st.error("Password must be at least 6 characters.")
                         else:
@@ -453,8 +453,8 @@ else:
                                 st.success(msg)
                             else:
                                 st.error(msg)
-                    else:
-                        st.error("Please enter email and password.")
+                else:
+                    st.error("Please enter email and password.")
         st.markdown("</div>", unsafe_allow_html=True)
 
     # HOW IT WORKS
