@@ -49,6 +49,7 @@ def sign_out():
     st.session_state.plan = "free"
     st.session_state.analyses_used = 0
 
+
 def restore_session():
     if st.session_state.get("access_token") and st.session_state.get("refresh_token"):
         supabase.auth.set_session(st.session_state.access_token, st.session_state.refresh_token)    
