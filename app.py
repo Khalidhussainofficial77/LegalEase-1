@@ -573,8 +573,8 @@ else:
                             "low_risk": low,
                             "total_clauses": len(analysed)
                         }).execute()
-                    except:
-                        pass
+                    except Exception as e:
+                        st.error(f"History save failed: {e}")
 
                     st.markdown(f"""
                     <div style="max-width:860px;margin:16px auto;">
